@@ -1,152 +1,324 @@
-import React from 'react';
-import { Shield, Users, Server, BookOpen, AlertCircle } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Правила Legion SCL</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-export default function App() {
-  const rules = {
-    general: [
-      { id: '0.01', text: 'Каждый участник клана обязан придерживаться действующих правил.' },
-      { id: '0.02', text: 'За нарушения правил, нарушитель будет наказан по указанным правилам.' }
-    ],
-    communication: [
-      { id: '1.01', text: 'Запрещены любые оскорбления родных.' },
-      { id: '1.02', text: 'Запрещено сливать группу другим людям, т.е инфу о группе и тд.' },
-      { id: '1.03', text: 'Запрещён спам.' },
-      { id: '1.04', text: 'Запрещён рейд группы.' },
-      { id: '1.05', text: 'Запрещён расизм.' },
-      { 
-        id: '1.06', 
-        text: 'Запрещено оскорблять создателя и его помощников без причины.',
-        note: 'за обычную шутку, наказание не выдаётся.'
-      },
-      { id: '1.07', text: 'Запрещены политические срачи, религиозные срачи и т.д., и т.п.' },
-      { id: '1.08', text: 'Запрещены аморальные сообщения, GIF, стикеры, эмодзи и т.д., и т.п.' },
-      { id: '1.09', text: 'Запрещено разводить дискуссии и ссоры, а так же конфликты на любые темы.' },
-      { id: '1.10', text: 'Запрещено часто юзать команду "калл".' },
-      { id: '1.11', text: 'Запрещено разводить ссоры и провоцировать участников, а так же запрещено провоцировать участников на нарушение правил.' }
-    ],
-    privateServer: [
-      { id: '2.01', text: 'Запрещено убивать друг друга без разрешения создателя приватки или же куратора администрации/главных админов.' },
-      { id: '2.02', text: 'Если человек качает ребитхи его строго запрещено убивать, только по его согласию.' },
-      { id: '2.03', text: 'Запрещено мешать проводить что-либо на приватке.' }
-    ]
-  };
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #e0e0ff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
 
-  const notes = [
-    'К главе №2 подходят и другие плейсы.',
-    'Правила могут и будут дополняться.'
-  ];
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      {/* Header */}
-      <header className="bg-black/30 backdrop-blur-sm border-b border-purple-500/30">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-center space-x-3">
-            <Shield className="w-8 h-8 text-purple-400" />
-            <h1 className="text-3xl font-bold text-white">Legion SCL</h1>
-            <Shield className="w-8 h-8 text-purple-400" />
-          </div>
-          <p className="text-center text-purple-200 mt-2">
-            Официальные правила клана
-          </p>
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #8a2be2;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(138, 43, 226, 0.3);
+        }
+
+        .clan-name {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(138, 43, 226, 0.8);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #c9a0dc;
+            font-weight: 300;
+        }
+
+        .welcome-box {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 1px solid #8a2be2;
+            box-shadow: 0 4px 20px rgba(138, 43, 226, 0.2);
+        }
+
+        .welcome-box h2 {
+            font-size: 1.8rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .welcome-box h2 i {
+            color: #8a2be2;
+        }
+
+        .welcome-box p {
+            font-size: 1.1rem;
+            color: #d8bfd8;
+            line-height: 1.8;
+        }
+
+        .rules-section {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 1px solid #8a2be2;
+            box-shadow: 0 4px 20px rgba(138, 43, 226, 0.2);
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: #ffffff;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #8a2be2;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title i {
+            color: #8a2be2;
+        }
+
+        .rule-item {
+            background: rgba(138, 43, 226, 0.1);
+            padding: 18px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #8a2be2;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .rule-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
+        }
+
+        .rule-number {
+            font-weight: bold;
+            color: #8a2be2;
+            font-size: 1.1rem;
+            margin-right: 15px;
+            min-width: 60px;
+            display: inline-block;
+        }
+
+        .rule-text {
+            font-size: 1.1rem;
+            color: #e6e6fa;
+            display: inline;
+        }
+
+        .note {
+            display: block;
+            font-style: italic;
+            color: #ffb6c1;
+            margin-top: 8px;
+            padding-left: 75px;
+            font-size: 1rem;
+        }
+
+        .notes-section {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #ff6b6b;
+            box-shadow: 0 4px 20px rgba(255, 107, 107, 0.2);
+        }
+
+        .notes-title {
+            font-size: 1.8rem;
+            color: #ff6b6b;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .notes-title i {
+            color: #ff6b6b;
+        }
+
+        .note-item {
+            background: rgba(255, 107, 107, 0.1);
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            border-left: 3px solid #ff6b6b;
+            color: #ffd1dc;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border-top: 2px solid #8a2be2;
+            margin-top: 30px;
+            border-radius: 15px;
+            color: #c9a0dc;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .clan-name {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .rule-number {
+                display: block;
+                margin-bottom: 8px;
+                min-width: auto;
+            }
+            
+            .note {
+                padding-left: 0;
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .clan-name {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .rule-text, .note-item {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="clan-name">Legion SCL</h1>
+            <p class="subtitle">Официальные правила клана</p>
+        </header>
+
+        <div class="welcome-box">
+            <h2><i class="fas fa-book-open"></i> Добро пожаловать!</h2>
+            <p>Здравствуйте уважаемые участники клана.<br>В данной теме вы сможете ознакомиться с действующими правилами нашего клана.</p>
         </div>
-      </header>
 
-      {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">
-        {/* Welcome Message */}
-        <div className="bg-black/40 backdrop-blur-sm rounded-xl border border-purple-500/30 p-6 mb-8">
-          <div className="flex items-start space-x-3">
-            <BookOpen className="w-6 h-6 text-purple-400 mt-1 flex-shrink-0" />
-            <div>
-              <h2 className="text-xl font-semibold text-white mb-2">
-                Здравствуйте уважаемые участники клана.
-              </h2>
-              <p className="text-purple-200">
-                В данной теме вы сможете ознакомиться с действующими правилами нашего клана.
-              </p>
+        <div class="rules-section">
+            <h2 class="section-title"><i class="fas fa-exclamation-triangle"></i> Общие положения</h2>
+            <div class="rule-item">
+                <span class="rule-number">0.01 —</span>
+                <span class="rule-text">Каждый участник клана обязан придерживаться действующих правил.</span>
             </div>
-          </div>
+            <div class="rule-item">
+                <span class="rule-number">0.02 —</span>
+                <span class="rule-text">За нарушения правил, нарушитель будет наказан по указанным правилам.</span>
+            </div>
         </div>
 
-        {/* General Rules */}
-        <div className="bg-black/40 backdrop-blur-sm rounded-xl border border-purple-500/30 p-6 mb-8">
-          <div className="flex items-center space-x-3 mb-6">
-            <AlertCircle className="w-6 h-6 text-purple-400" />
-            <h3 className="text-2xl font-bold text-white">Общие положения</h3>
-          </div>
-          <div className="space-y-4">
-            {rules.general.map((rule) => (
-              <div key={rule.id} className="flex items-start space-x-4 p-4 bg-purple-900/20 rounded-lg">
-                <span className="text-purple-400 font-mono text-sm font-bold min-w-12">{rule.id}</span>
-                <p className="text-purple-100 leading-relaxed">{rule.text}</p>
-              </div>
-            ))}
-          </div>
+        <div class="rules-section">
+            <h2 class="section-title"><i class="fas fa-users"></i> Глава №1 "Общение — Группа"</h2>
+            <div class="rule-item">
+                <span class="rule-number">1.01 —</span>
+                <span class="rule-text">Запрещены любые оскорбления родных.</span>
+            </div>
+            <div class="rule-item">
+                <span class="rule-number">1.02 —</span>
+                <span class="rule-text">Запрещено сливать группу другим людям, т.е инфу о группе и тд.</span>
+            </div>
+            <div class="rule-item">
+                <span class="rule-number">1.03 —</span>
+                <span class="rule-text">Запрещён спам.</span>
+            </div>
+            <div class="rule-item">
+                <span class="rule-number">1.04 —</span>
+                <span class="rule-text">Запрещён рейд группы.</span>
+            </div>
+            <div class="rule-item">
+                <span class="rule-number">1.05 —</span>
+                <span class="rule-text">Запрещён расизм.</span>
+            </div>
+            <div class="rule-item">
+                <span class="rule-number">1.06 —</span>
+                <span class="rule-text">Запрещено оскорблять создателя и его помощников без причины.</span>
+                <span class="note">примечание: за обычную шутку, наказание не выдаётся.</span>
+            </div>
+            <div class="rule-item">
+                <span class="rule-number">1.07 —</span>
+                <span class="rule-text">Запрещены политические срачи, религиозные срачи и т.д., и т.п.</span>
+            </div>
+            <div class="rule-item">
+                <span class="rule-number">1.08 —</span>
+                <span class="rule-text">Запрещены аморальные сообщения, GIF, стикеры, эмодзи и т.д., и т.п.</span>
+            </div>
+            <div class="rule-item">
+                <span class="rule-number">1.09 —</span>
+                <span class="rule-text">Запрещено разводить дискуссии и ссоры, а так же конфликты на любые темы.</span>
+            </div>
+            <div class="rule-item">
+                <span class="rule-number">1.10 —</span>
+                <span class="rule-text">Запрещено часто юзать команду "калл".</span>
+            </div>
+            <div class="rule-item">
+                <span class="rule-number">1.11 —</span>
+                <span class="rule-text">Запрещено разводить ссоры и провоцировать участников, а так же запрещено провоцировать участников на нарушение правил.</span>
+            </div>
         </div>
 
-        {/* Communication Rules */}
-        <div className="bg-black/40 backdrop-blur-sm rounded-xl border border-purple-500/30 p-6 mb-8">
-          <div className="flex items-center space-x-3 mb-6">
-            <Users className="w-6 h-6 text-purple-400" />
-            <h3 className="text-2xl font-bold text-white">Глава №1 "Общение — Группа"</h3>
-          </div>
-          <div className="space-y-4">
-            {rules.communication.map((rule) => (
-              <div key={rule.id} className="flex items-start space-x-4 p-4 bg-purple-900/20 rounded-lg">
-                <span className="text-purple-400 font-mono text-sm font-bold min-w-12">{rule.id}</span>
-                <div className="flex-1">
-                  <p className="text-purple-100 leading-relaxed">{rule.text}</p>
-                  {rule.note && (
-                    <p className="text-purple-300 text-sm mt-2 italic">примечание: {rule.note}</p>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
+        <div class="rules-section">
+            <h2 class="section-title"><i class="fas fa-server"></i> Глава №2 "Private SERVER" [Muscle of Legends]</h2>
+            <div class="rule-item">
+                <span class="rule-number">2.01 —</span>
+                <span class="rule-text">Запрещено убивать друг друга без разрешения создателя приватки или же куратора администрации/главных админов.</span>
+            </div>
+            <div class="rule-item">
+                <span class="rule-number">2.02 —</span>
+                <span class="rule-text">Если человек качает ребитхи его строго запрещено убивать, только по его согласию.</span>
+            </div>
+            <div class="rule-item">
+                <span class="rule-number">2.03 —</span>
+                <span class="rule-text">Запрещено мешать проводить что-либо на приватке.</span>
+            </div>
         </div>
 
-        {/* Private Server Rules */}
-        <div className="bg-black/40 backdrop-blur-sm rounded-xl border border-purple-500/30 p-6 mb-8">
-          <div className="flex items-center space-x-3 mb-6">
-            <Server className="w-6 h-6 text-purple-400" />
-            <h3 className="text-2xl font-bold text-white">Глава №2 "Private SERVER" [Muscle of Legends]</h3>
-          </div>
-          <div className="space-y-4">
-            {rules.privateServer.map((rule) => (
-              <div key={rule.id} className="flex items-start space-x-4 p-4 bg-purple-900/20 rounded-lg">
-                <span className="text-purple-400 font-mono text-sm font-bold min-w-12">{rule.id}</span>
-                <p className="text-purple-100 leading-relaxed">{rule.text}</p>
-              </div>
-            ))}
-          </div>
+        <div class="notes-section">
+            <h2 class="notes-title"><i class="fas fa-info-circle"></i> Важные примечания</h2>
+            <div class="note-item">• к главе №2 подходят и другие плейсы.</div>
+            <div class="note-item">• Правила могут и будут дополняться.</div>
         </div>
 
-        {/* Notes Section */}
-        <div className="bg-black/40 backdrop-blur-sm rounded-xl border border-purple-500/30 p-6">
-          <h3 className="text-xl font-bold text-white mb-4 flex items-center space-x-2">
-            <AlertCircle className="w-5 h-5 text-yellow-400" />
-            <span>Важные примечания</span>
-          </h3>
-          <div className="space-y-3">
-            {notes.map((note, index) => (
-              <div key={index} className="flex items-start space-x-3 p-3 bg-yellow-900/20 rounded-lg">
-                <span className="text-yellow-400 text-lg">•</span>
-                <p className="text-yellow-100">{note}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-black/50 backdrop-blur-sm border-t border-purple-500/30 mt-12">
-        <div className="container mx-auto px-4 py-6 text-center">
-          <p className="text-purple-300">
-            Legion SCL • Соблюдение правил — залог дружной и успешной команды
-          </p>
-        </div>
-      </footer>
+        <footer>
+            <p>Legion SCL • Соблюдение правил — залог дружной и успешной команды</p>
+        </footer>
     </div>
-  );
-}
+</body>
+</html>
+
