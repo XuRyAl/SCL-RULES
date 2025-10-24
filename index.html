@@ -1,0 +1,152 @@
+import React from 'react';
+import { Shield, Users, Server, BookOpen, AlertCircle } from 'lucide-react';
+
+export default function App() {
+  const rules = {
+    general: [
+      { id: '0.01', text: 'Каждый участник клана обязан придерживаться действующих правил.' },
+      { id: '0.02', text: 'За нарушения правил, нарушитель будет наказан по указанным правилам.' }
+    ],
+    communication: [
+      { id: '1.01', text: 'Запрещены любые оскорбления родных.' },
+      { id: '1.02', text: 'Запрещено сливать группу другим людям, т.е инфу о группе и тд.' },
+      { id: '1.03', text: 'Запрещён спам.' },
+      { id: '1.04', text: 'Запрещён рейд группы.' },
+      { id: '1.05', text: 'Запрещён расизм.' },
+      { 
+        id: '1.06', 
+        text: 'Запрещено оскорблять создателя и его помощников без причины.',
+        note: 'за обычную шутку, наказание не выдаётся.'
+      },
+      { id: '1.07', text: 'Запрещены политические срачи, религиозные срачи и т.д., и т.п.' },
+      { id: '1.08', text: 'Запрещены аморальные сообщения, GIF, стикеры, эмодзи и т.д., и т.п.' },
+      { id: '1.09', text: 'Запрещено разводить дискуссии и ссоры, а так же конфликты на любые темы.' },
+      { id: '1.10', text: 'Запрещено часто юзать команду "калл".' },
+      { id: '1.11', text: 'Запрещено разводить ссоры и провоцировать участников, а так же запрещено провоцировать участников на нарушение правил.' }
+    ],
+    privateServer: [
+      { id: '2.01', text: 'Запрещено убивать друг друга без разрешения создателя приватки или же куратора администрации/главных админов.' },
+      { id: '2.02', text: 'Если человек качает ребитхи его строго запрещено убивать, только по его согласию.' },
+      { id: '2.03', text: 'Запрещено мешать проводить что-либо на приватке.' }
+    ]
+  };
+
+  const notes = [
+    'К главе №2 подходят и другие плейсы.',
+    'Правила могут и будут дополняться.'
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      {/* Header */}
+      <header className="bg-black/30 backdrop-blur-sm border-b border-purple-500/30">
+        <div className="container mx-auto px-4 py-6">
+          <div className="flex items-center justify-center space-x-3">
+            <Shield className="w-8 h-8 text-purple-400" />
+            <h1 className="text-3xl font-bold text-white">Legion SCL</h1>
+            <Shield className="w-8 h-8 text-purple-400" />
+          </div>
+          <p className="text-center text-purple-200 mt-2">
+            Официальные правила клана
+          </p>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="container mx-auto px-4 py-8">
+        {/* Welcome Message */}
+        <div className="bg-black/40 backdrop-blur-sm rounded-xl border border-purple-500/30 p-6 mb-8">
+          <div className="flex items-start space-x-3">
+            <BookOpen className="w-6 h-6 text-purple-400 mt-1 flex-shrink-0" />
+            <div>
+              <h2 className="text-xl font-semibold text-white mb-2">
+                Здравствуйте уважаемые участники клана.
+              </h2>
+              <p className="text-purple-200">
+                В данной теме вы сможете ознакомиться с действующими правилами нашего клана.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* General Rules */}
+        <div className="bg-black/40 backdrop-blur-sm rounded-xl border border-purple-500/30 p-6 mb-8">
+          <div className="flex items-center space-x-3 mb-6">
+            <AlertCircle className="w-6 h-6 text-purple-400" />
+            <h3 className="text-2xl font-bold text-white">Общие положения</h3>
+          </div>
+          <div className="space-y-4">
+            {rules.general.map((rule) => (
+              <div key={rule.id} className="flex items-start space-x-4 p-4 bg-purple-900/20 rounded-lg">
+                <span className="text-purple-400 font-mono text-sm font-bold min-w-12">{rule.id}</span>
+                <p className="text-purple-100 leading-relaxed">{rule.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Communication Rules */}
+        <div className="bg-black/40 backdrop-blur-sm rounded-xl border border-purple-500/30 p-6 mb-8">
+          <div className="flex items-center space-x-3 mb-6">
+            <Users className="w-6 h-6 text-purple-400" />
+            <h3 className="text-2xl font-bold text-white">Глава №1 "Общение — Группа"</h3>
+          </div>
+          <div className="space-y-4">
+            {rules.communication.map((rule) => (
+              <div key={rule.id} className="flex items-start space-x-4 p-4 bg-purple-900/20 rounded-lg">
+                <span className="text-purple-400 font-mono text-sm font-bold min-w-12">{rule.id}</span>
+                <div className="flex-1">
+                  <p className="text-purple-100 leading-relaxed">{rule.text}</p>
+                  {rule.note && (
+                    <p className="text-purple-300 text-sm mt-2 italic">примечание: {rule.note}</p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Private Server Rules */}
+        <div className="bg-black/40 backdrop-blur-sm rounded-xl border border-purple-500/30 p-6 mb-8">
+          <div className="flex items-center space-x-3 mb-6">
+            <Server className="w-6 h-6 text-purple-400" />
+            <h3 className="text-2xl font-bold text-white">Глава №2 "Private SERVER" [Muscle of Legends]</h3>
+          </div>
+          <div className="space-y-4">
+            {rules.privateServer.map((rule) => (
+              <div key={rule.id} className="flex items-start space-x-4 p-4 bg-purple-900/20 rounded-lg">
+                <span className="text-purple-400 font-mono text-sm font-bold min-w-12">{rule.id}</span>
+                <p className="text-purple-100 leading-relaxed">{rule.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Notes Section */}
+        <div className="bg-black/40 backdrop-blur-sm rounded-xl border border-purple-500/30 p-6">
+          <h3 className="text-xl font-bold text-white mb-4 flex items-center space-x-2">
+            <AlertCircle className="w-5 h-5 text-yellow-400" />
+            <span>Важные примечания</span>
+          </h3>
+          <div className="space-y-3">
+            {notes.map((note, index) => (
+              <div key={index} className="flex items-start space-x-3 p-3 bg-yellow-900/20 rounded-lg">
+                <span className="text-yellow-400 text-lg">•</span>
+                <p className="text-yellow-100">{note}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-black/50 backdrop-blur-sm border-t border-purple-500/30 mt-12">
+        <div className="container mx-auto px-4 py-6 text-center">
+          <p className="text-purple-300">
+            Legion SCL • Соблюдение правил — залог дружной и успешной команды
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}
